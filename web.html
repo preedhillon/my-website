@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextUp Concrete pumping  </title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #0066cc;
+            --secondary: #004d99;
+            --accent: #ff9900;
+            --light: #f5f8fa;
+            --dark: #333333;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        main {
+            min-height: calc(100vh - 120px);
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            margin-bottom: 3rem;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        h1 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            color: var(--secondary);
+            margin: 1rem 0;
+            font-size: 1.8rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 3rem 1rem;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: 3rem;
+        }
+
+        .hero p {
+            max-width: 600px;
+            font-size: 1.2rem;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-height: 400px;
+            margin: 1rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+        }
+
+        .btn-accent:hover {
+            background-color: #e68a00;
+        }
+
+        /* Form Styles */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 600px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        input, 
+        textarea, 
+        select {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        /* Features Grid */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Team Section */
+        .team {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 1rem;
+            border: 3px solid var(--primary);
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Page-specific styles */
+        #home { display: block; }
+        #about, #employment, #book-pump, #contact { display: none; }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                transition: var(--transition);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Pump Solutions</div>
+            <div class="hamburger">☰</div>
+            <div class="nav-links">
+                <a href="#" onclick="showPage('home')">Home</a>
+                <a href="#" onclick="showPage('about')">About Us</a>
+                <a href="#" onclick="showPage('employment')">Employment</a>
+                <a href="#" onclick="showPage('book-pump')">Book a Pump</a>
+                <a href="#" onclick="showPage('contact')">Contact Us</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Page -->
+        <section id="home">
+            <div class="hero">
+                <h1>NextUp Concrete pumping </h1>
+                <p>Delivering reliable pumping solutions for all your industrial needs with over 20 years of experience</p>
+                <div class="hero-image">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c8eeb38c-9ac7-407f-866c-bc80c7978060.png" alt="Industrial pump installation with workers in safety gear working on large metal machinery in a clean factory environment" />
+                </div>
+                <a href="#" onclick="showPage('book-pump')" class="btn btn-accent">Book a Pump Now</a>
+            </div>
+
+            <h2>Our Services</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🛠️</div>
+                    <h3>Pump Installation</h3>
+                    <p>Professional installation of industrial-grade pumping systems with warranty coverage.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Maintenance</h3>
+                    <p>Regular maintenance and servicing to ensure optimal pump performance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚑</div>
+                    <h3>Emergency Repair</h3>
+                    <p>24/7 emergency repair services to minimize downtime in critical situations.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Page -->
+        <section id="about">
+            <h1>About Pump Solutions</h1>
+            
+            <h2>Our Story</h2>
+            <p>Founded in 2003, Pump Solutions has grown from a small local business to a leading provider of industrial pumping solutions across the region. Our commitment to quality and customer service has been the cornerstone of our success.</p>
+            
+            <div class="hero-image">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/069e9578-536d-42cb-8d44-e72a23d06ea3.png" alt="Team of engineers in hardhats reviewing blueprints and discussing pump installation plans in a modern office" />
+            </div>
+            
+            <h2>Our Values</h2>
+            <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                <li>Commitment to Excellence</li>
+                <li>Customer-Centric Approach</li>
+                <li>Technical Expertise</li>
+                <li>Safety First</li>
+                <li>Sustainable Solutions</li>
+            </ul>
+            
+            <h2>Meet Our Team</h2>
+            <div class="team">
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9080e463-484d-4459-995f-3dd1f9dc2662.png" alt="Portrait of an experienced engineer with graying hair wearing a company polo shirt and safety glasses" />
+                    </div>
+                    <h3>John Smith</h3>
+                    <p>Founder & CEO</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f20b9314-d7c0-4f49-8910-b1746bfb3a3e.png" alt="Young engineer with hardhat standing in front of industrial equipment and smiling" />
+                    </div>
+                    <h3>Sarah Johnson</h3>
+                    <p>Technical Director</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-image">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a1fafd1f-e138-4312-b0d3-1e46a686bc9d.png" alt="Woman in safety vest pointing to a schematic with a veteran technician" />
+                    </div>
+                    <h3>Michael Brown</h3>
+                    <p>Operations Manager</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Employment Page -->
+        <section id="employment">
+            <h1>Join Our Team</h1>
+            
+            <div class="hero-image">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d2ebc333-c77f-4108-968a-251c10bab2e3.png" alt="Diverse team of engineers and technicians working together in a modern industrial facility" />
+            </div>
+            
+            <h2>Current Opportunities</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <h3>Field Service Technician</h3>
+                    <p>Install, maintain, and repair pumping systems at client sites. Minimum 3 years experience required.</p>
+                    <button class="btn">Apply Now</button>
+                </div>
+                <div class="feature-card">
+                    <h3>Sales Engineer</h3>
+                    <p>Help customers find the right pumping solutions. Technical knowledge preferred.</p>
+                    <button class="btn">Apply Now</button>
+                </div>
+                <div class="feature-card">
+                    <h3>Operations Manager</h3>
+                    <p>Oversee daily operations and coordinate service teams. Leadership experience required.</p>
+                    <button class="btn">Apply Now</button>
+                </div>
+            </div>
+            
+            <h2>Why Work With Us?</h2>
+            <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                <li>Competitive salaries and benefits</li>
+                <li>Ongoing training and development</li>
+                <li>Supportive work environment</li>
+                <li>Opportunities for career growth</li>
+                <li>Modern facilities and equipment</li>
+            </ul>
+        </section>
+
+        <!-- Book a Pump Page -->
+        <section id="book-pump">
+            <h1>Book a Pump</h1>
+            <p>Fill out the form below to book a pump or request a quote for your project.</p>
+            
+            <form id="pump-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="service">Service Needed</label>
+                    <select id="service" name="service" required>
+                        <option value="">Select a service</option>
+                        <option value="installation">Pump Installation</option>
+                        <option value="rental">Pump Rental</option>
+                        <option value="maintenance">Maintenance</option>
+                        <option value="repair">Emergency Repair</option>
+                        <option value="consultation">Consultation</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="date">Preferred Date</label>
+                    <input type="date" id="date" name="date">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Project Details</label>
+                    <textarea id="message" name="message" rows="5"></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-accent">Submit Request</button>
+            </form>
+            
+            <div class="features" style="margin-top: 2rem;">
+                <div class="feature-card">
+                    <h3>24/7 Emergency Service</h3>
+                    <p>Call our emergency line for urgent pump repair needs at any time: (555) 123-4567</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Us Page -->
+        <section id="contact">
+            <h1>Contact Us</h1>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <div>
+                    <h2>Get In Touch</h2>
+                    <p>Have questions or need assistance? Our team is here to help.</p>
+                    
+                    <div style="margin: 1.5rem 0;">
+                        <h3>Address</h3>
+                        <p>13 Lomandra Driv <br>kialla, VIC 3631</p>
+                    </div>
+                    
+                    <div style="margin: 1.5rem 0;">
+                        <h3>Contact Information</h3>
+                        <p>Phone: 0438586764<br>
+                        Email: nextuppumping50@gmail.com<br>
+                        </p>
+                    </div>
+                    
+                    <h3>Business Hours</h3>
+                    <p>Monday-Friday: 8:00 AM - 5:00 PM<br>
+                    Saturday: 9:00 AM - 1:00 PM<br>
+                    Sunday: Closed</p>
+                </div>
+                
+                <div>
+                    <div class="hero-image" style="height: 100%;">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c302018d-f730-49b9-b6e8-e2ae661f0656.png" alt="Modern industrial facility exterior with the Pump Solutions logo on the building front and a parking lot with service vehicles" />
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#" onclick="showPage('home')">Home</a>
+            <a href="#" onclick="showPage('about')">About</a>
+            <a href="#" onclick="showPage('employment')">Careers</a>
+            <a href="#" onclick="showPage('book-pump')">Services</a>
+            <a href="#" onclick="showPage('contact')">Contact</a>
+        </div>
+        <p>© 2025 Pump Solutions Inc. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Toggle mobile menu
+        document.querySelector('.hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Show selected page and hide others
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('main > section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).style.display = 'block';
+            
+            // Close mobile menu if open
+            document.querySelector('.nav-links').classList.remove('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Form submission
+        document.getElementById('pump-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your request! Our team will contact you shortly.');
+            this.reset();
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
+
